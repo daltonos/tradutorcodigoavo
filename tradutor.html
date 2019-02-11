@@ -1,0 +1,21 @@
+<html>
+<header><title>This is title</title></header>
+<body>
+    <textarea rows="4" cols="50" id="mytext" oninput="decrypt(this.value)"/></textarea>
+    <p id="result"></p>
+
+    <script>
+        function decrypt(text) {
+            al = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z".split(",");
+            document. getElementById("result").innerHTML = "";
+            var mychar = '';
+            for (var i = 0; i < text.length; i++) {
+                var index = al.indexOf(text.charAt(i));
+                if(index < 0) mychar = text.charAt(i);
+                else mychar = al[25 - index - 1]
+                document. getElementById("result").innerHTML += mychar;
+            }
+        }
+    </script>
+</body>
+</html>
