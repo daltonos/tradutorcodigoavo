@@ -14,7 +14,12 @@
             <textarea style="width:100%;font-size:5rem;padding:2rem;" rows="4" cols="50"  placeholder="Digite o código aqui..."
             id="mytext" oninput="decrypt(this.value)" autofocus></textarea>
         </div>
-        <div style="font-size:4rem;border-style: dotted;border-width: 5px;padding:2rem;margin-top: 5rem;word-break: break-word;" id="result">Decodificação...</div>
+        <div style="font-size:4rem;border-style: dotted;border-width: 5px;padding:2rem;margin-top: 5rem;word-break: break-word;
+         -moz-user-select: text;
+        -khtml-user-select: text;
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;" id="result">Decodificação...</div>
     </div>
 
     <script>
