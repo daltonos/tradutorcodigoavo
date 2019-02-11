@@ -1,18 +1,52 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
 <header><title>This is title</title></header>
-<body>
-    <textarea rows="4" cols="50" id="mytext" oninput="decrypt(this.value)"/></textarea>
-    <p id="result"></p>
+<body style="padding:4rem;">
+    <p style="text-align:center;width:100%;font-size:5rem;">Desencriptador Mussolini</p>
+    <span>
+        <img src="lock.svg" style="display:block;margin:auto;width:7rem;margin-bottom:5rem;"/>
+    </span>
+
+    <div style="height:100%;">
+        <div style="border-style: dotted;border-width: 5px;">
+            <textarea style="width:100%;font-size:5rem;padding:2rem;" rows="4" cols="50"  placeholder="Digite o código aqui..."
+            id="mytext" oninput="decrypt(this.value)" autofocus></textarea>
+        </div>
+        <div style="font-size:4rem;border-style: dotted;border-width: 5px;padding:2rem;margin-top: 5rem;word-break: break-word;" id="result">Decodificação...</div>
+    </div>
 
     <script>
         function decrypt(text) {
-            al = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z".split(",");
+            mins = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z".split(",");
+            maius = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,X,Y,Z".split(",");
+
+            acentos = {
+                "é": "ú",
+                "ú": "é",
+                "ê": "û",
+                "û": "ê",
+                "É": "Ú",
+                "Ú": "É",
+                "Ê": "Û",
+                "Û": "Ê"
+            }
+            
+
             document. getElementById("result").innerHTML = "";
             var mychar = '';
             for (var i = 0; i < text.length; i++) {
-                var index = al.indexOf(text.charAt(i));
-                if(index < 0) mychar = text.charAt(i);
-                else mychar = al[25 - index - 1]
+                var char = text.charAt(i);
+
+                var indexMaius = maius.indexOf(char);
+                var indexMin = mins.indexOf(char);
+
+                if(indexMaius >= 0) mychar = maius[25 - indexMaius - 1];
+                else if(indexMin >= 0) mychar = mins[25 - indexMin - 1];
+                else if(char in acentos) mychar = acentos[char]; 
+                else mychar = char;
+
                 document. getElementById("result").innerHTML += mychar;
             }
         }
